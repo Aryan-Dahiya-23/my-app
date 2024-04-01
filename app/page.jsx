@@ -5,7 +5,11 @@ import React, { useState } from 'react';
 function MyComponent() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const colors = ['#2E3192', '#009245', '#662D8C', '#516395', '#696969'];
-  const originalBackgroundColor = document.body.style.backgroundColor;
+  const [originalBackgroundColor, setOriginalBackgroundColor] = useState('');
+
+  React.useEffect(() => {
+    setOriginalBackgroundColor(document.body.style.backgroundColor);
+  }, []);
 
   const addNotification = () => {
     alert('Notification sent successfully!');
@@ -15,7 +19,6 @@ function MyComponent() {
       document.body.style.backgroundColor = originalBackgroundColor;
     }, 1000);
   };
-
   return (
     <div>
       <h1>Try <b>IT</b> Bell</h1>
